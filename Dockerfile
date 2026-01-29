@@ -42,7 +42,7 @@ RUN chown appuser:appgroup app.jar
 # Ejecutar como usuario no-root
 USER appuser
 
-EXPOSE 8080
+EXPOSE 9090
 
 # Healthcheck de la aplicación
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
