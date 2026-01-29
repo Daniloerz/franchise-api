@@ -37,8 +37,8 @@ El proyecto sigue Clean Architecture con las siguientes capas:
    docker-compose up --build
    ```
 
-3. La API estará disponible en: http://localhost:8080  
-4. Documentación Swagger: http://localhost:8080/swagger-ui.html
+3. La API estará disponible en: http://localhost:9090  
+4. Documentación Swagger: http://localhost:9090/swagger-ui.html
 
 ## Ejecución Local (sin Docker)
 
@@ -79,28 +79,28 @@ El proyecto sigue Clean Architecture con las siguientes capas:
 
 ### Crear franquicia
 ```bash
-curl -X POST http://localhost:8080/api/v1/franchises \
+curl -X POST http://localhost:9090/api/v1/franchises \
   -H "Content-Type: application/json" \
   -d '{"name": "Mi Franquicia"}'
 ```
 
 ### Agregar sucursal
 ```bash
-curl -X POST http://localhost:8080/api/v1/franchises/{franchiseId}/branches \
+curl -X POST http://localhost:9090/api/v1/franchises/{franchiseId}/branches \
   -H "Content-Type: application/json" \
   -d '{"name": "Sucursal Centro"}'
 ```
 
 ### Agregar producto
 ```bash
-curl -X POST http://localhost:8080/api/v1/branches/{branchId}/products \
+curl -X POST http://localhost:9090/api/v1/branches/{branchId}/products \
   -H "Content-Type: application/json" \
   -d '{"name": "Producto A", "stock": 100}'
 ```
 
 ### Obtener productos con más stock por sucursal
 ```bash
-curl http://localhost:8080/api/v1/franchises/{franchiseId}/top-stock-products
+curl http://localhost:9090/api/v1/franchises/{franchiseId}/top-stock-products
 ```
 
 ## Ejecutar Tests
