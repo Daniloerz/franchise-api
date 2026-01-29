@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: franchise-db
+    environment:
+      POSTGRES_DB: franchise_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - franchise-network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: franchise-api
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: franchise_db
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      SERVER_PORT: 8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - franchise-network
+
+volumes:
+  postgres_data:
+
+networks:
+  franchise-network:
+    driver: bridge
+

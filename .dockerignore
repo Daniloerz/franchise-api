@@ -1,0 +1,13 @@
+target/
+*.log
+*.iml
+.idea/
+.git/
+.gitignore
+*.md
+!README.md
+.env
+.DS_Store
+*.swp
+*.swo
+
